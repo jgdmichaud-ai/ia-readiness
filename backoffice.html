@@ -134,7 +134,7 @@
       <label>Mot de passe</label>
       <input type="password" id="pwdInput" placeholder="••••••••" autocomplete="off" onkeydown="if(event.key==='Enter') login()">
     </div>
-    <button class="btn-login" onclick="login()">Accéder au dashboard</button>
+    <button class="btn-login" id="btnLogin">Accéder au dashboard</button>
     <div class="login-error" id="loginError">Mot de passe incorrect.</div>
   </div>
 </div>
@@ -145,9 +145,9 @@
     <img src="logo.png" alt="JGM Advisory">
     <div class="topbar-right">
       <span class="badge-n" id="badgeN">0</span>
-      <button class="btn-sm" onclick="exportExcel()">&#11015; Export Excel</button>
-      <button class="btn-sm primary" onclick="exportPPT()">&#9650; Export PowerPoint</button>
-      <button class="btn-sm primary" onclick="loadData()">&#8635; Actualiser</button>
+      <button class="btn-sm" id="btnExcel">&#11015; Export Excel</button>
+      <button class="btn-sm primary" id="btnPPT">&#9650; Export PowerPoint</button>
+      <button class="btn-sm primary" id="btnRefresh">&#8635; Actualiser</button>
     </div>
   </div>
 
@@ -896,6 +896,13 @@ function exportExcel() {
   a.href=url; a.download='ia_readiness_export.csv'; a.click();
   URL.revokeObjectURL(url);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btnLogin').addEventListener('click', function(){ login(); });
+  document.getElementById('btnRefresh').addEventListener('click', function(){ loadData(); });
+  document.getElementById('btnExcel').addEventListener('click', function(){ exportExcel(); });
+  document.getElementById('btnPPT').addEventListener('click', function(){ exportPPT(); });
+});
 </script>
 </body>
 </html>
